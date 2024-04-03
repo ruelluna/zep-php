@@ -10,26 +10,26 @@ class Session
 
     private $apiClient;
 
-    private function __construct()
+    private function __construct($apiKey = null, $baseUrl = null)
     {
-        $apiKey = getenv('ZEP_API_KEY');
-        $baseUrl = getenv('ZEP_BASE_URL');
+        $apiKey = $apiKey ?: getenv('ZEP_API_KEY');
+        $baseUrl = $baseUrl ?: getenv('ZEP_BASE_URL');
 
         if (! $apiKey) {
-            throw new Exception('ZEP_API_KEY environment variable is not set.');
+            throw new Exception('API key is not provided or set in environment variables.');
         }
 
         if (! $baseUrl) {
-            throw new Exception('ZEP_BASE_URL environment variable is not set.');
+            throw new Exception('Base URL is not provided or set in environment variables.');
         }
 
         $this->apiClient = new ZepApiClient($baseUrl, $apiKey);
     }
 
-    public static function getInstance()
+    public static function make($apiKey = null, $baseUrl = null)
     {
         if (self::$instance === null) {
-            self::$instance = new self();
+            self::$instance = new self($apiKey, $baseUrl);
         }
 
         return self::$instance;
@@ -37,14 +37,14 @@ class Session
 
     public static function getAll()
     {
-        return self::getInstance()
+        return self::make()
             ->apiClient
             ->makeRequest('GET', '/api/v1/sessions');
     }
 
     public static function getSession($sessionId)
     {
-        return self::getInstance()
+        return self::make()
             ->apiClient
             ->makeRequest('GET', "/api/v1/sessions/{$sessionId}");
     }
