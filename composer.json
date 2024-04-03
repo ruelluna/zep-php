@@ -1,0 +1,24 @@
+{
+    "name": "ruelluna/zep-php",
+    "description": "PHP Wrapper for Zep REST API",
+    "type": "library",
+    "require": {
+        "ext-curl": "*",
+        "guzzlehttp/guzzle": "^7.8"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "RuelLuna\\ZepPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ruel Luna",
+            "email": "ruelluna@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+    }
+}
