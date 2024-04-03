@@ -22,8 +22,8 @@ composer require ruelluna/zep-php
 Before using the Zep PHP SDK, you must set up the required environment variables. Define **ZEP_API_KEY** and **ZEP_BASE_URL** in your project's environment file:
 
 ```dotenv
-ZEP_API_KEY=your_api_key_here
-ZEP_BASE_URL=https://api.getzep.com/v1/  # Modify if using a different version
+ZEP_API_KEY=
+ZEP_BASE_URL=
 ```
 
 ## Usage
@@ -45,6 +45,13 @@ $messages = Message::getAll([session-id]);
 // get message from a session
 $messages = Message::getMessage([session-id], [message-id]); 
 
+```
+
+## Or Create instances passing API key and base URL
+```php
+$sessionRequest = \RuelLuna\ZepPhp\Session::make('your-api-key', 'your-base-url');
+
+return $sessionRequest->getAll();
 ```
 
 ## Contributing
