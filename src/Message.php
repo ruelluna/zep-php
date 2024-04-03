@@ -56,7 +56,7 @@ class Message
     {
         return self::getInstance()
             ->apiClient
-            ->makeRequest('GET', '/api/v1/session/'.$sessionId.'/messages');
+            ->makeRequest('GET', '/api/v1/sessions/'.$sessionId.'/messages');
     }
 
     /**
